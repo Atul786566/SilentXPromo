@@ -1,0 +1,15 @@
+import random
+
+def print_random_line(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    while lines:
+        random_line = random.choice(lines)
+        uncaptured = random_line.strip().replace('[Microsoft Hit] ', '').split(' | ')[0]
+        print(uncaptured)
+        lines.remove(random_line)
+        with open('formatted.txt', 'a') as file:
+            file.write(uncaptured+'\n')
+file_path = 'loggies.txt'
+print_random_line(file_path)
